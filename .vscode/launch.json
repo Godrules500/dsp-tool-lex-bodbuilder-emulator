@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Server",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/dist/bot-framework-bot.js",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "Build and Copy Files",
+            "console": "integratedTerminal",
+            "outFiles": ["${workspaceFolder}/dist/**/*.js"]
+        }
+    ]
+}

@@ -1,0 +1,41 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+      {
+          "label": "clean output directory",
+          "type": "shell",
+          "command": "powershell",
+          "args": [
+              "if (Test-Path dist) { Remove-Item -Recurse -Force dist }"
+          ]
+      },
+      {
+          "label": "build TypeScript",
+          "type": "shell",
+          "command": "npm",
+          "args": ["run", "build"],
+          "dependsOn": ["clean output directory"],
+          "group": {
+              "kind": "build",
+              "isDefault": true
+          }
+      },
+      {
+          "label": "Build and Copy Files",
+          "dependsOn": ["build TypeScript"],
+          "group": "build",
+          "dependsOrder": "sequence",
+      },
+      {
+          "label": "start-sam-api",
+          "type": "shell",
+          "command": "sam local start-api",
+          "isBackground": true,
+          "problemMatcher": [],
+          "presentation": {
+              "reveal": "always",
+              "panel": "dedicated"
+          }
+      }
+  ]
+}
